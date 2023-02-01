@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -16,7 +16,7 @@ import Geolocation from 'react-native-geolocation-service';
 
 
 // Function to get permission for location
-const requestLocationPermission = async () => {
+export const requestLocationPermission = async () => {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -61,13 +61,13 @@ export const LocationScreen = () => {
             console.log(error.code, error.message);
             setLocation(false);
           },
-          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
         );
       }
     });
     console.log(location);
   };
-  // Function to Send Location to twitter
+
   const sendLocation = () => {
     try {
       if (location) {
@@ -77,22 +77,24 @@ export const LocationScreen = () => {
       console.log(error);
     }
   };
+
   return (
     <View style={styles.container}>
       <Text>Welcome!</Text>
       <View
-        style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
+        style={{ marginTop: 10, padding: 10, borderRadius: 10, width: '40%' }}>
         <Button title="Get Location" onPress={getLocation} />
       </View>
       <Text>Latitude: {location ? location.coords.latitude : null}</Text>
       <Text>Longitude: {location ? location.coords.longitude : null}</Text>
       <View
-        style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
+        style={{ marginTop: 10, padding: 10, borderRadius: 10, width: '40%' }}>
         <Button title="Send Location" onPress={sendLocation} />
       </View>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
