@@ -7,9 +7,6 @@ import {
   PermissionsAndroid,
   Linking,
 } from 'react-native';
-
-import {LocationScreen} from './screens/locationscreen'
-
 import Geolocation from 'react-native-geolocation-service';
 
 /**
@@ -43,7 +40,9 @@ const requestLocationPermission = async () => {
     return false;
   }
 };
-const App = () => {
+
+
+export const LocationScreen = () => {
   // state to hold location
   const [location, setLocation] = useState(false);
   // function to check permissions and get Location
@@ -102,4 +101,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-export default App;
